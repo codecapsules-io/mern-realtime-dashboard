@@ -1,4 +1,3 @@
- 
 const Data = require('../models/dataModel');
 
 const getData = async (req, res) => {
@@ -15,6 +14,8 @@ const createData = async (req, res) => {
     try {
         const data = new Data({ value });
         await data.save();
+        const io = req.app.get('io');
+        io.emit('data', data);
         res.status(201).json(data);
     } catch (error) {
         res.status(500).json({ error: error.message });

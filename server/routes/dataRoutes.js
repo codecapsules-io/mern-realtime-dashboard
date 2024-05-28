@@ -1,4 +1,3 @@
- 
 const express = require('express');
 const { getData, createData } = require('../controllers/dataController');
 
